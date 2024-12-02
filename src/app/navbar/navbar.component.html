@@ -1,0 +1,35 @@
+<nav [ngClass]="{'fixed top-0 left-0 right-0 z-50 transition-all duration-300': true, 'bg-[#1a1a1a]/90 backdrop-blur-sm py-4': isScrolled, 'py-8': !isScrolled}">
+    <div class="container mx-auto px-6">
+        <div class="flex items-center justify-between">
+            <span class="text-[#d4a373] text-2xl font-medium transition-all duration-300 hover:text-[#e6b17e] cursor-pointer">
+                Logo
+            </span>
+            <div class="hidden md:flex items-center space-x-12">
+                @for (item of navItems; track item) {
+                <a href="#"
+                    class="text-white hover:text-[#d4a373] transition-colors text-lg font-medium relative group">
+                    {{ item }}
+                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-[#d4a373] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                }
+            </div>
+            <button (click)="toggleMobileMenu()" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile menu -->
+    <div *ngIf="isMobileMenuOpen" class="md:hidden absolute top-full left-0 right-0 bg-[#1a1a1a]/95 backdrop-blur-md border-t border-[#d4a373]/10 shadow-lg">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            @for (item of navItems; track item) {
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                {{ item }}
+            </a>
+            }
+        </div>
+    </div>
+</nav>
+
